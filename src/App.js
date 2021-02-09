@@ -1,12 +1,17 @@
 import ItemTable from "./ItemTable";
 import { useState, useEffect } from "react";
 
-function App() {
-  //add useState for all state variables
+function setPerson(name, gender, age) {
+  <ItemTable name={name} gender={gender} age={age}/>
+}
 
+function App() {
+  var [name, gender, age, setPerson] = useState("", "male", "0");
+  
   //load locationStorage
   useEffect(() => {
     const items = localStorage.getItem("items");
+
     // ...
   }, []);
 
@@ -20,13 +25,13 @@ function App() {
             className="input"
             type="text"
             placeholder="e.q John Smith"
-            //update related state based on event
+
           ></input>
         </div>
 
         <div className="field">
           <label className="label">Gender</label>
-          <select className="input" type="text" placeholder="Please select ..">
+          <select className="input" type="text" placeholder="Please select .." input="gender">
             <option value="" disabled selected hidden>
               -- Select Gender --
             </option>
@@ -37,18 +42,18 @@ function App() {
 
         <div className="field">
           <label className="label">Age</label>
-          <input className="input" type="number" placeholder="e.q 30"></input>
+          <input className="input" type="number" placeholder="e.q 30" id="age"></input>
         </div>
 
-        <button className="button is-primary is-fullwidth">Submit</button>
+        <button className="button is-primary is-fullwidth" onClick={(name, gender, age) => setPerson()}>Submit</button>
 
         <div className="mb-4"></div>
 
         {/* display tables for all persons */}
         <p className="is-4 title has-text-centered">Person List</p>
         {/* sample table */}
-        <ItemTable name={"Bob"} gender={"Male"} age={"50"} />
-        <p>Your name and code here</p>
+        <ItemTable name={"bob"} gender={"Male"} age={"50"} />
+        <p>Peerawas muanfoo 620610803</p>
       </div>
     </div>
   );
